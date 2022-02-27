@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="country" class="com.isanuric.xml.country.Country">
+        <constructor-arg index="0" value="ukraine"></constructor-arg>
+        <constructor-arg index="1" value="kyiv"></constructor-arg>
+        <constructor-arg type="int" value="2000"></constructor-arg>
+    </bean>
+
+    <!-- A Country created with the default constructor, but then uses the property setters to specify name fields -->
+    <bean id="countryGermany" class="com.isanuric.xml.country.Country">
+        <property name="name" value="Germany" />
+        <property name="capital" value="Berlin" />
+    </bean>
+
+    <!-- A Continent created referring to country (created above) via a constructor argument -->
+    <bean id="continent" class="com.isanuric.xml.country.Continent">
+        <constructor-arg index="0" value="Europe"></constructor-arg>
+        <constructor-arg index="1" ref="country"></constructor-arg>
+    </bean>
+</beans>
